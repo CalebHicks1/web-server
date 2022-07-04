@@ -17,7 +17,7 @@ import (
 )
 
 func home(w http.ResponseWriter, r *http.Request) {
-	http.ServeFile(w, r, "../static/index.html")
+	http.ServeFile(w, r, "/usr/static/index.html")
 }
 
 func api_get(w http.ResponseWriter, r *http.Request) {
@@ -31,7 +31,7 @@ func api_post(w http.ResponseWriter, r *http.Request) {
 func main() {
 	r := mux.NewRouter()
 
-	r.PathPrefix("/static/").Handler(http.FileServer(http.Dir(".")))
+	r.PathPrefix("/static/").Handler(http.FileServer(http.Dir("/usr/")))
 
 	// Define routes
 	r.HandleFunc("/", home)
@@ -43,7 +43,6 @@ func main() {
 	// Start the server
 	srv := &http.Server{
 		Handler: r,
-		Addr:    "127.0.0.1:8000",
 		// Good practice: enforce timeouts for servers you create!
 		WriteTimeout: 15 * time.Second,
 		ReadTimeout:  15 * time.Second,

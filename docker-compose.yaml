@@ -1,0 +1,14 @@
+version: '2'
+services:
+  go-web-app:
+    restart: always
+    build:
+      dockerfile: Dockerfile
+      context: .
+    volumes:
+      - ./static:/usr/static:ro
+    ports:
+      - "8000:80"
+    environment:
+      - VIRTUAL_HOST=hickscaleb.com
+      - LETSENCRYPT_HOST=hickscaleb.com
