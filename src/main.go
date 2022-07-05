@@ -25,7 +25,7 @@ func home(w http.ResponseWriter, r *http.Request) {
 }
 
 func api_get(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "reponse!")
+	fmt.Fprintf(w, local)
 }
 
 func api_post(w http.ResponseWriter, r *http.Request) {
