@@ -16,8 +16,11 @@ import (
 	"github.com/gorilla/mux"
 )
 
+var working_dir, static_dir, port string
+var local bool
+
 func home(w http.ResponseWriter, r *http.Request) {
-	http.ServeFile(w, r, "/usr/static/index.html")
+	http.ServeFile(w, r, working_dir+"static/index.html")
 }
 
 func api_get(w http.ResponseWriter, r *http.Request) {
@@ -29,9 +32,33 @@ func api_post(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
+
+	local = false // set to true if running on local machine
+	var srv *http.Server
 	r := mux.NewRouter()
 
-	r.PathPrefix("/static/").Handler(http.FileServer(http.Dir("/usr/")))
+	if local == true {
+		port = "8000"
+		working_dir = "../"
+		srv = &http.Server{
+			Handler: r,
+			Addr:    "localhost:8000",
+			// Good practice: enforce timeouts for servers you create!
+			WriteTimeout: 15 * time.Second,
+			ReadTimeout:  15 * time.Second,
+		}
+	} else {
+		port = "80"
+		working_dir = "/usr/"
+		srv = &http.Server{
+			Handler: r,
+			// Good practice: enforce timeouts for servers you create!
+			WriteTimeout: 15 * time.Second,
+			ReadTimeout:  15 * time.Second,
+		}
+	}
+
+	r.PathPrefix("/static/").Handler(http.FileServer(http.Dir(working_dir)))
 
 	// Define routes
 	r.HandleFunc("/", home)
@@ -41,12 +68,6 @@ func main() {
 		Methods("POST")
 
 	// Start the server
-	srv := &http.Server{
-		Handler: r,
-		// Good practice: enforce timeouts for servers you create!
-		WriteTimeout: 15 * time.Second,
-		ReadTimeout:  15 * time.Second,
-	}
 
 	log.Fatal(srv.ListenAndServe())
 }
