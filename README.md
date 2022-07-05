@@ -22,7 +22,7 @@ https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-o
 ```
 docker-compose -f nginx-proxy-compose.yaml up -d
 ```
-2. Run webapp:
+2. Run webapp and force a rebuild if the source code was changed:
 ```
 docker-compose up -d --build
 ```

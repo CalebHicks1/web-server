@@ -10,6 +10,7 @@ FROM alpine:3.13
 RUN apk --no-cache add ca-certificates
 WORKDIR /usr/bin
 COPY --from=build /go/src/app/bin /go/bin
+COPY ./src/.env /usr/.env
 EXPOSE 80
 WORKDIR /usr/
 ENTRYPOINT /go/bin/web-app --port 80
