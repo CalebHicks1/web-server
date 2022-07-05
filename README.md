@@ -26,3 +26,7 @@ docker-compose -f nginx-proxy-compose.yaml up -d
 ```
 docker-compose up -d --build
 ```
+
+# Credits
+Using the gorilla/mux toolkit
+https://github.com/gorilla/mux#static-files

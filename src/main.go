@@ -17,15 +17,14 @@ import (
 	"github.com/joho/godotenv"
 )
 
-var working_dir, static_dir, port string
-var local string
+var working_dir, static_dir, port, local, session_key string
 
 func home(w http.ResponseWriter, r *http.Request) {
 	http.ServeFile(w, r, working_dir+"static/index.html")
 }
 
 func api_get(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, local)
+	fmt.Fprintf(w, "running locally: %s", local)
 }
 
 func api_post(w http.ResponseWriter, r *http.Request) {
@@ -36,6 +35,7 @@ func main() {
 	// Load .env file
 	godotenv.Load()
 	local = os.Getenv("RUN-LOCAL") // set to true if running on local machine
+	session_key = os.Getenv("SESSION-KEY")
 	var srv *http.Server
 	r := mux.NewRouter()
 
