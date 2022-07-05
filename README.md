@@ -6,6 +6,13 @@ Uses:
     - webapp
 
 # Setup
+Create `.env` file with the following values:
+```
+# Random key to encrypt your session
+SESSION-KEY="<key-to-encrypt-session>"
+# Set to true if you are running on a local machine and not a container
+RUN-LOCAL="false"
+```
 ## Install
 1. Install docker: 
 https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-18-04
@@ -17,5 +24,5 @@ docker-compose -f nginx-proxy-compose.yaml up -d
 ```
 2. Run webapp:
 ```
-docker-compose up -d
+docker-compose up -d --build
 ```

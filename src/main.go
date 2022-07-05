@@ -8,16 +8,17 @@ NOTES: use html/template to pass variables to html: https://stackoverflow.com/qu
 
 import (
 	"fmt"
+	"log"
 	"net/http"
+	"os"
 	"time"
 
-	"log"
-
 	"github.com/gorilla/mux"
+	"github.com/joho/godotenv"
 )
 
 var working_dir, static_dir, port string
-var local bool
+var local string
 
 func home(w http.ResponseWriter, r *http.Request) {
 	http.ServeFile(w, r, working_dir+"static/index.html")
@@ -32,12 +33,13 @@ func api_post(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
-
-	local = false // set to true if running on local machine
+	// Load .env file
+	godotenv.Load()
+	local = os.Getenv("RUN-LOCAL") // set to true if running on local machine
 	var srv *http.Server
 	r := mux.NewRouter()
 
-	if local == true {
+	if local == "true" {
 		port = "8000"
 		working_dir = "../"
 		srv = &http.Server{
