@@ -40,7 +40,7 @@ func main() {
 	r := mux.NewRouter()
 
 	if local == "true" {
-		port = "8000"
+		port = "9990"
 		working_dir = "../"
 		srv = &http.Server{
 			Handler: r,

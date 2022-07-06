@@ -8,5 +8,5 @@ services:
     volumes:
       - ./static:/usr/static:ro
     environment:
-      - VIRTUAL_HOST=hickscaleb.com
-      - LETSENCRYPT_HOST=hickscaleb.com
+      - VIRTUAL_HOST=calebhicks.net
+      - LETSENCRYPT_HOST=calebhicks.net
