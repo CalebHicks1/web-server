@@ -39,21 +39,21 @@ func main() {
 	var srv *http.Server
 	r := mux.NewRouter()
 
-	if local == "true" {
-		port = "9990"
-		working_dir = "../"
+	if local == "false" {
+		port = "80"
+		working_dir = "/usr/"
 		srv = &http.Server{
 			Handler: r,
-			Addr:    "localhost:9990",
 			// Good practice: enforce timeouts for servers you create!
 			WriteTimeout: 15 * time.Second,
 			ReadTimeout:  15 * time.Second,
 		}
 	} else {
-		port = "80"
-		working_dir = "/usr/"
+		port = "9990"
+		working_dir = "../"
 		srv = &http.Server{
 			Handler: r,
+			Addr:    "localhost:9990",
 			// Good practice: enforce timeouts for servers you create!
 			WriteTimeout: 15 * time.Second,
 			ReadTimeout:  15 * time.Second,
