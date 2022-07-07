@@ -21,6 +21,7 @@
     --h1-size: 80px;
     --page-size: 1000px;
     --justify: left;
+    --min-page-size: 600px;
 }
 
 /* Light mode */
@@ -49,6 +50,7 @@
         --h1-size: 15.0vw;
         --page-size: 100vw;
         --justify: center;
+        --min-page-size: 100vw;
     }
 
 
@@ -64,7 +66,7 @@ body {
 #content {
     background-color: var(--fg-color) !important;
     max-width: var(--page-size);
-    min-width: 600px;
+    min-width: var(--min-page-size);
     height: 100vh;
     text-align: var(--justify);
     display: block;
