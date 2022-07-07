@@ -14,24 +14,69 @@
     src: url('fonts/OpenSans-ExtraBold.ttf');
 }
 
+:root {
+    --bg-color: rgb(252, 242, 231);
+    --fg-color: rgb(235, 224, 212);
+    --text-color: rgb(37, 37, 36);
+    --h1-size: 80px;
+    --page-size: 1000px;
+    --justify: left;
+}
+
+/* Light mode */
+@media (prefers-color-scheme: light) {
+    :root {
+        --bg-color: rgb(238, 226, 212);
+        --fg-color: rgb(252, 242, 231);
+        --text-color: rgb(37, 37, 36);
+    }
+}
+
+/* Dark mode */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg-color: rgb(19, 19, 18);
+        --fg-color: rgb(29, 29, 27);
+        --text-color: antiquewhite;
+    }
+}
+
+/* Mobile */
+@media screen and (max-width: 481px) {
+
+    :root {
+
+        --h1-size: 15.0vw;
+        --page-size: 100vw;
+        --justify: center;
+    }
+
+
+}
+
 body {
-    background-color: rgb(37, 37, 36);
-    color: antiquewhite;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    padding: 0px;
+    margin: 0px;
 }
 
 #content {
-	background-color:blue;
-	width:100%;
-	height:100%;
-	margin-left: 50px;
-	margin-right:50px;
+    background-color: var(--fg-color) !important;
+    max-width: var(--page-size);
+    min-width: 600px;
+    height: 100vh;
+    text-align: var(--justify);
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 h1 {
+    display: inline-block;
     font-family: Open-Sans;
     font-weight: bold;
-    font-size: 6.0vw;
-
+    font-size: var(--h1-size);
     margin-block-start: 0.2em;
     margin-block-end: 0.0em;
     margin-inline-start: 0px;
@@ -43,7 +88,7 @@ h1 {
 h2 {
     font-family: Gulzar;
     font-weight: 100;
-    font-size: 2.0vw;
+    font-size: 50px;
     margin-block-start: 0.0em;
     margin-block-end: 0.2em;
     margin-inline-start: 0px;
@@ -55,20 +100,4 @@ h2 {
 #banner-title {
     position: absolute;
     top: 0%
-}
-
-/* Light mode */
-@media (prefers-color-scheme: light) {
-    body {
-        background-color: rgb(252, 242, 231);
-        color: rgb(37, 37, 36);
-    }
-}
-
-/* Dark mode */
-@media (prefers-color-scheme: dark) {
-    body {
-        background-color: rgb(37, 37, 36);
-        color: antiquewhite;
-    }
 }

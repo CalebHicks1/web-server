@@ -9,3 +9,5 @@ ExecStart=/bin/web-app
 
 [Install]
 WantedBy=multi-user.target
+
+// Put this in /lib/systemd/system/web-app.service
