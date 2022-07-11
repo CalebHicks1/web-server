@@ -33,14 +33,17 @@ func home(w http.ResponseWriter, r *http.Request) {
 	session, _ := store.Get(r, "session")
 
 	// Build template from index.html
-	templ, err := template.ParseFiles("static/index.html")
+	templ, err := template.ParseFiles("../static/index.html")
 	if err != nil {
-		print(err)
-		os.Exit(1)
+		fmt.Print(err)
 	}
 
+	usernameString, ok := session.Values["userName"].(string)
 	data := User{
-		Name: session.Values["userName"].(string),
+		Name: usernameString,
+	}
+	if ok {
+		data.Name = usernameString
 	}
 
 	templ.Execute(w, data)
