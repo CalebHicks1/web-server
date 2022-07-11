@@ -59,7 +59,7 @@
 body {
     background-color: var(--bg-color);
     color: var(--text-color);
-    padding: 0px;
+
     margin: 0px;
 }
 
@@ -72,6 +72,8 @@ body {
     display: block;
     margin-left: auto;
     margin-right: auto;
+    padding-left: 20px;
+    padding-right: 20px;
 }
 
 h1 {
