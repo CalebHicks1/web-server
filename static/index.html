@@ -9,8 +9,16 @@
 
 <body>
     <div id="content">
+        {{ if .Name }}
+        <h1>Hello {{.Name}}!</h1>
+        {{else}}
         <h1>Hello!</h1>
+        {{end}}
         <h2>This is my website</h2>
+        <form action="/api" method="POST">
+            <input name="username" placeholder="what's your name?" type="text">
+            <input type="submit" value="Submit">
+        </form>
     </div>
 </body>
 

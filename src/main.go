@@ -8,19 +8,42 @@ NOTES: use html/template to pass variables to html: https://stackoverflow.com/qu
 
 import (
 	"fmt"
+	"html/template"
 	"log"
 	"net/http"
 	"os"
 	"time"
 
 	"github.com/gorilla/mux"
+	"github.com/gorilla/sessions"
 	"github.com/joho/godotenv"
 )
 
 var working_dir, static_dir, port, local, session_key string
+var store = sessions.NewCookieStore([]byte(os.Getenv("SESSION_KEY")))
+
+type User struct {
+	Name string
+}
 
 func home(w http.ResponseWriter, r *http.Request) {
-	http.ServeFile(w, r, working_dir+"static/index.html")
+	//http.ServeFile(w, r, working_dir+"static/index.html")
+
+	// Get a cokkie session: https://github.com/gorilla/sessions
+	session, _ := store.Get(r, "session")
+
+	// Build template from index.html
+	templ, err := template.ParseFiles("../static/index.html")
+	if err != nil {
+		print(err)
+		os.Exit(1)
+	}
+
+	data := User{
+		Name: session.Values["userName"].(string),
+	}
+
+	templ.Execute(w, data)
 }
 
 func api_get(w http.ResponseWriter, r *http.Request) {
@@ -28,7 +51,16 @@ func api_get(w http.ResponseWriter, r *http.Request) {
 }
 
 func api_post(w http.ResponseWriter, r *http.Request) {
-	fmt.Printf("POST request from %s: test=%s\n", r.RemoteAddr, r.PostFormValue("test"))
+	fmt.Printf("POST request from %s: username=%s\n", r.RemoteAddr, r.PostFormValue("username"))
+	session, _ := store.Get(r, "session")
+	session.Values["userName"] = r.PostFormValue("username")
+	fmt.Printf(r.PostFormValue("username"))
+	err := session.Save(r, w)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+	http.Redirect(w, r, "https://calebhicks.net", http.StatusSeeOther)
 }
 
 func main() {
