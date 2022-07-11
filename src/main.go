@@ -33,7 +33,7 @@ func home(w http.ResponseWriter, r *http.Request) {
 	session, _ := store.Get(r, "session")
 
 	// Build template from index.html
-	templ, err := template.ParseFiles("../static/index.html")
+	templ, err := template.ParseFiles("static/index.html")
 	if err != nil {
 		print(err)
 		os.Exit(1)
