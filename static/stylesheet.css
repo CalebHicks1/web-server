@@ -19,9 +19,10 @@
     --fg-color: rgb(235, 224, 212);
     --text-color: rgb(37, 37, 36);
     --h1-size: 80px;
-    --page-size: 1500px;
+    --page-size: 900px;
     --justify: left;
     --min-page-size: 600px;
+    --padding-amount:40px;
 }
 
 /* Light mode */
@@ -51,6 +52,7 @@
         --page-size: 100vw;
         --justify: center;
         --min-page-size: 100vw;
+	--padding-amount: 0px;
     }
 
 
@@ -72,8 +74,8 @@ body {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    padding-left: 20px;
-    padding-right: 20px;
+    padding-left: var(--padding-amount);
+    padding-right: var(--padding-amount);
 }
 
 h1 {
@@ -85,22 +87,25 @@ h1 {
     margin-block-end: 0.0em;
     margin-inline-start: 0px;
     margin-inline-end: 0px;
-
-    padding-left: 0.5vw;
+    margin-left:-20px;
 }
 
 h2 {
-    font-family: Gulzar;
-    font-weight: 100;
-    font-size: 50px;
-    margin-block-start: 0.0em;
-    margin-block-end: 0.2em;
+    font-family: Open-Sans;
+    font-weight: bold;
+    font-size: 35px;
+    margin-block-start: 0px;
+    margin-block-end: -10px;
     margin-inline-start: 0px;
     margin-inline-end: 0px;
-
-    padding-left: 0.5vw;
 }
 
+p {
+	font-family: Open-Sans;
+	font-weight: 20;
+	font-size:18px;
+	margin:40px;
+}
 #banner-title {
     position: absolute;
     top: 0%

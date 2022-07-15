@@ -15,9 +15,17 @@
         <h1>Hello!</h1>
         {{end}}
         <h2>This is my website</h2>
+	<p>
+		I'm a senior at <a href="https://vt.edu/">Virginia Tech</a> studying computer science. I plan to use this site to talk about the projects I'm working on, and to practice web development and api design. 
+	</p>
         <form action="/api" method="POST">
-            <input name="username" placeholder="what's your name?" type="text">
-            <input type="submit" value="Submit">
+	    {{ if .Name }}
+	    	<input name="username" placeholder="what's your name?" type="hidden" value="">
+                <input type="submit" value="Clear Name">
+ 	    {{else}}
+	     	<input name="username" placeholder="what's your name?" type="text">
+                <input type="submit" value="Submit">
+	    {{end}}
         </form>
     </div>
 </body>
