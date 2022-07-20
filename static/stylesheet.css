@@ -95,7 +95,7 @@ h2 {
     font-weight: bold;
     font-size: 35px;
     margin-block-start: 0px;
-    margin-block-end: -10px;
+    margin-block-end: 0px;
     margin-inline-start: 0px;
     margin-inline-end: 0px;
 }
@@ -104,9 +104,22 @@ p {
 	font-family: Open-Sans;
 	font-weight: 20;
 	font-size:18px;
-	margin:40px;
 }
 #banner-title {
     position: absolute;
     top: 0%
 }
+
+.video-container {
+	position:relative;
+	padding-bottom:56.25%;
+	padding-top:30px!important;
+	height:0;
+	overflow:hidden;
+}
+
+.video-container iframe, .video-container object, .video-container embed {
+	position:absolute;
+	left:0;
+	width:100%;
+	height:100%;
