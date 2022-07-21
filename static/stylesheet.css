@@ -111,6 +111,8 @@ p {
 }
 
 .video-container {
+	margin-left:auto;
+	margin-right:auto;
 	position:relative;
 	padding-bottom:56.25%;
 	padding-top:30px!important;
@@ -120,6 +122,8 @@ p {
 
 .video-container iframe, .video-container object, .video-container embed {
 	position:absolute;
+	width:85%;
+	height:85%;
 	left:0;
-	width:100%;
-	height:100%;
+	right:0;
+	margin: 0 auto;
